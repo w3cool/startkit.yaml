@@ -6,3 +6,13 @@ roles:
   ingest: "true"
   data: "true"
 replicas: 2
+
+esJavaOpts: "-Xmx1g -Xms1g"
+
+# Request smaller persistent volumes.
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "pvc-1"
+  resources:
+    requests:
+      storage: 2000Gi
