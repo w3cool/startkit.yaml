@@ -26,3 +26,4 @@ volumeClaimTemplate:
   resources:
     requests:
       storage: 2000Gi
+      
