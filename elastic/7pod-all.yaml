@@ -1,0 +1,88 @@
+# master.yaml
+---
+clusterName: "elasticsearch"
+nodeGroup: "master"
+roles:
+  master: "true"
+  ingest: "false"
+  data: "false"
+replicas: 3
+
+esJavaOpts: "-Xmx4g -Xms2g"
+
+resources:
+  requests:
+    cpu: "2000m"
+    memory: "2Gi"
+  limits:
+    cpu: "4000m"
+    memory: "4Gi"
+
+
+# Request smaller persistent volumes.
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "pvc-1"
+  resources:
+    requests:
+      storage: 2000Gi
+
+# data.yaml
+---
+clusterName: "elasticsearch"
+nodeGroup: "data"
+roles:
+  master: "false"
+  ingest: "true"
+  data: "true"
+replicas: 2
+
+esJavaOpts: "-Xmx1g -Xms1g"
+
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "2Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+    
+# Request smaller persistent volumes.
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "pvc-1"
+  resources:
+    requests:
+      storage: 2000Gi
+
+
+#client.yaml
+---
+clusterName: "elasticsearch"
+nodeGroup: "client"
+roles:
+  master: "false"
+  ingest: "false"
+  data: "false"
+replicas: 2
+service:
+  type: "LoadBalancer"
+
+esJavaOpts: "-Xmx4g -Xms2g"
+
+resources:
+  requests:
+    cpu: "2000m"
+    memory: "2Gi"
+  limits:
+    cpu: "4000m"
+    memory: "4Gi"
+
+# Request smaller persistent volumes.
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "pvc-1"
+  resources:
+    requests:
+      storage: 2000Gi
+---

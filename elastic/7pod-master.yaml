@@ -8,61 +8,16 @@ roles:
   data: "false"
 replicas: 3
 
-#esMajorVersion: ""
-
-# Allows you to add any config files in /usr/share/elasticsearch/config/
-# such as elasticsearch.yml and log4j2.properties
-esConfig: {}
-#  elasticsearch.yml: |
-#    key:
-#      nestedkey: value
-#  log4j2.properties: |
-#    key = value
-
-# Extra environment variables to append to this nodeGroup
-# This will be appended to the current 'env:' key. You can use any of the kubernetes env
-# syntax here
-extraEnvs: []
-#  - name: MY_ENVIRONMENT_VAR
-#    value: the_value_goes_here
-
-# Allows you to load environment variables from kubernetes secret or config map
-envFrom: []
-# - secretRef:
-#     name: env-secret
-# - configMapRef:
-#     name: config-map
-
-# A list of secrets and their paths to mount inside the pod
-# This is useful for mounting certificates for security and for mounting
-# the X-Pack license
-secretMounts: []
-#  - name: elastic-certificates
-#    secretName: elastic-certificates
-#    path: /usr/share/elasticsearch/config/certs
-#    defaultMode: 0755
-
-#image: "docker.elastic.co/elasticsearch/elasticsearch"
-#imageTag: "7.9.3-SNAPSHOT"
-#imagePullPolicy: "IfNotPresent"
-
-podAnnotations: {}
-  # iam.amazonaws.com/role: es-cluster
-
-# additionals labels
-#labels: {}
-
-esJavaOpts: "-Xmx1g -Xms1g"
+esJavaOpts: "-Xmx4g -Xms2g"
 
 resources:
   requests:
-    cpu: "1000m"
+    cpu: "2000m"
     memory: "2Gi"
   limits:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "4000m"
+    memory: "4Gi"
 
-# networkHost: "0.0.0.0"
 
 # Request smaller persistent volumes.
 volumeClaimTemplate:

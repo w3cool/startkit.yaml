@@ -1,3 +1,4 @@
+#client.yaml
 ---
 clusterName: "elasticsearch"
 nodeGroup: "client"
@@ -9,15 +10,15 @@ replicas: 2
 service:
   type: "LoadBalancer"
 
-esJavaOpts: "-Xmx1g -Xms1g"
+esJavaOpts: "-Xmx4g -Xms4g"
 
 resources:
   requests:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "4Gi"
   limits:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "8000m"
+    memory: "8Gi"
 
 # Request smaller persistent volumes.
 volumeClaimTemplate:
@@ -26,4 +27,3 @@ volumeClaimTemplate:
   resources:
     requests:
       storage: 2000Gi
-      
