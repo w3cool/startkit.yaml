@@ -1,3 +1,4 @@
+# data.yaml
 ---
 clusterName: "elasticsearch"
 nodeGroup: "data"
@@ -7,15 +8,15 @@ roles:
   data: "true"
 replicas: 2
 
-esJavaOpts: "-Xmx1g -Xms1g"
+esJavaOpts: "-Xmx4g -Xms4g"
 
 resources:
   requests:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "4Gi"
   limits:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "6000m"
+    memory: "8Gi"
     
 # Request smaller persistent volumes.
 volumeClaimTemplate:
